@@ -1,0 +1,7 @@
+; FruityPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "FL Plug-in"
+DESCRIPTION  'Fruity plugin test'
+
+EXPORTS
+    CreatePlugInstance

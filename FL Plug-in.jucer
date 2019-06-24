@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="xvUYxM" name="FL Plug-in" projectType="dll" jucerVersion="5.4.3"
+              headerPath="../../Source/fpsdk" cppLanguageStandard="17" projectLineFeed="&#10;">
+  <MAINGROUP id="UihbV3" name="FL Plug-in">
+    <GROUP id="{ADCB5DD8-DDBF-D35E-66EC-550EB75EE91B}" name="Source">
+      <GROUP id="{B082C84C-D763-E5B5-FD7C-C2BD8D74FCD2}" name="ui">
+        <GROUP id="{750FC705-480E-B8F0-5A61-AD200665D236}" name="utils">
+          <FILE id="AO4Bh5" name="CursorUtils.cpp" compile="1" resource="0" file="Source/ui/utils/CursorUtils.cpp"/>
+          <FILE id="J0to41" name="CursorUtils.h" compile="0" resource="0" file="Source/ui/utils/CursorUtils.h"/>
+          <FILE id="dV95AQ" name="ValueFormatters.cpp" compile="1" resource="0"
+                file="Source/ui/utils/ValueFormatters.cpp"/>
+          <FILE id="IMGYKM" name="ValueFormatters.h" compile="0" resource="0"
+                file="Source/ui/utils/ValueFormatters.h"/>
+        </GROUP>
+        <FILE id="kixvp2" name="ControllerComponent.cpp" compile="1" resource="0"
+              file="Source/ui/ControllerComponent.cpp"/>
+        <FILE id="H6hkhF" name="ControllerComponent.h" compile="0" resource="0"
+              file="Source/ui/ControllerComponent.h"/>
+        <FILE id="qCXz9h" name="SliderEx.cpp" compile="1" resource="0" file="Source/ui/SliderEx.cpp"/>
+        <FILE id="WHe3RA" name="SliderEx.h" compile="0" resource="0" file="Source/ui/SliderEx.h"/>
+      </GROUP>
+      <GROUP id="{AF1B4BBC-053B-1D47-C3CC-17FE49FD3D38}" name="plugin">
+        <FILE id="Ouhd9L" name="EditorWindow.cpp" compile="1" resource="0"
+              file="Source/plugin/EditorWindow.cpp"/>
+        <FILE id="m4PKLZ" name="EditorWindow.h" compile="0" resource="0" file="Source/plugin/EditorWindow.h"/>
+        <FILE id="Aols74" name="Plugin.cpp" compile="1" resource="0" file="Source/plugin/Plugin.cpp"/>
+        <FILE id="fqGd4O" name="Plugin.h" compile="0" resource="0" file="Source/plugin/Plugin.h"/>
+      </GROUP>
+      <GROUP id="{C9E71498-A44A-6318-7E5B-CAABA9E103DF}" name="interface">
+        <FILE id="ncUILC" name="DllEntry.cpp" compile="1" resource="0" file="Source/interface/DllEntry.cpp"/>
+        <FILE id="ELXM42" name="IPlugin.h" compile="0" resource="0" file="Source/interface/IPlugin.h"/>
+        <FILE id="NXcgLr" name="IPluginGUI.h" compile="0" resource="0" file="Source/interface/IPluginGUI.h"/>
+        <FILE id="DaKGrR" name="Param.cpp" compile="1" resource="0" file="Source/interface/Param.cpp"/>
+        <FILE id="MTPD08" name="Param.h" compile="0" resource="0" file="Source/interface/Param.h"/>
+        <FILE id="pa1gHo" name="ParamManager.cpp" compile="1" resource="0"
+              file="Source/interface/ParamManager.cpp"/>
+        <FILE id="XWXuyf" name="ParamManager.h" compile="0" resource="0" file="Source/interface/ParamManager.h"/>
+      </GROUP>
+      <GROUP id="{F7F5DBE1-C8B1-6406-CC33-DEEE68DC7E62}" name="fpsdk">
+        <FILE id="hA4DE9" name="fp_cplug.cpp" compile="1" resource="0" file="Source/fpsdk/fp_cplug.cpp"/>
+        <FILE id="RHCm9k" name="fp_cplug.h" compile="0" resource="0" file="Source/fpsdk/fp_cplug.h"/>
+        <FILE id="hUvjZ2" name="fp_def.h" compile="0" resource="0" file="Source/fpsdk/fp_def.h"/>
+        <FILE id="tqMV6L" name="fp_extra.cpp" compile="1" resource="0" file="Source/fpsdk/fp_extra.cpp"/>
+        <FILE id="WT0vZr" name="fp_extra.h" compile="0" resource="0" file="Source/fpsdk/fp_extra.h"/>
+        <FILE id="U0dxzj" name="fp_plugclass.cpp" compile="1" resource="0"
+              file="Source/fpsdk/fp_plugclass.cpp"/>
+        <FILE id="CFZwt5" name="fp_plugclass.h" compile="0" resource="0" file="Source/fpsdk/fp_plugclass.h"/>
+        <FILE id="CowjW5" name="generictransport.h" compile="0" resource="0"
+              file="Source/fpsdk/generictransport.h"/>
+      </GROUP>
+      <FILE id="HC9UEw" name="PluginInterface.cpp" compile="1" resource="0"
+            file="Source/PluginInterface.cpp"/>
+      <FILE id="GBxCxH" name="PluginInterface.h" compile="0" resource="0"
+            file="Source/PluginInterface.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <VS2017 targetFolder="Builds/VisualStudio2017">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+        <CONFIGURATION isDebug="1" name="DebugWin32" winArchitecture="Win32"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../../Program Files (x86)/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../Program Files (x86)/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../Program Files (x86)/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../Program Files (x86)/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../Program Files (x86)/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../Program Files (x86)/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../Program Files (x86)/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../Program Files (x86)/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../Program Files (x86)/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../Program Files (x86)/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2017>
+    <CLION targetFolder="Builds/CLion">
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_extra"/>
+        <MODULEPATH id="juce_gui_basics"/>
+        <MODULEPATH id="juce_graphics"/>
+        <MODULEPATH id="juce_events"/>
+        <MODULEPATH id="juce_data_structures"/>
+        <MODULEPATH id="juce_core"/>
+        <MODULEPATH id="juce_audio_processors"/>
+        <MODULEPATH id="juce_audio_formats"/>
+        <MODULEPATH id="juce_audio_devices"/>
+        <MODULEPATH id="juce_audio_basics"/>
+      </MODULEPATHS>
+    </CLION>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <LIVE_SETTINGS>
+    <WINDOWS/>
+  </LIVE_SETTINGS>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
+</JUCERPROJECT>
