@@ -1,0 +1,35 @@
+#pragma once
+
+#include <JuceHeader.h>
+#include "Utils.h"
+
+namespace Illuminations::Network {
+    struct Session {
+        char s[16];
+    };
+
+    template<typename Type>
+    class Buffer : public std::basic_string<Type> {
+    };
+
+    class StreamConnection {
+        addrinfo *addressInfo = nullptr;
+        SOCKET sock = INVALID_SOCKET;
+        Buffer<unsigned char> sendBuffer;
+        int seq = 0;
+
+    public:
+        StreamConnection(std::string &addr, int port);
+
+        ~StreamConnection();
+
+        template<typename T>
+        void update(Buffer<T> buffer, int s) {
+            send(buffer.data(), buffer.length() * sizeof(T), 0, buffer.length())
+        }
+
+        void send(const void *buffer, size_t len, int rangeStart, int rangeEnd);
+
+    };
+}
+

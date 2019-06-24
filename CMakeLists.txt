@@ -24,10 +24,15 @@ add_executable(Fl-Plug-in WIN32
         JuceLibraryCode/include_juce_graphics.cpp
         JuceLibraryCode/include_juce_gui_basics.cpp
         JuceLibraryCode/include_juce_gui_extra.cpp
+        Source/illuminations/network/IlluminationServer.cpp
+        Source/illuminations/network/StreamConnection.cpp
+        Source/illuminations/network/Utils.cpp
         Source/interface/DllEntry.cpp
         Source/interface/Param.cpp
         Source/interface/ParamManager.cpp
         Source/plugin/Plugin.cpp
         Source/plugin/EditorWindow.cpp
         Source/PluginInterface.cpp
-        Source/ui/SliderEx.cpp Source/ui/utils/CursorUtils.cpp Source/ui/utils/CursorUtils.h Source/ui/utils/ValueFormatters.cpp Source/ui/utils/ValueFormatters.h)
+        Source/ui/SliderEx.cpp
+        Source/ui/utils/CursorUtils.cpp
+        Source/ui/utils/ValueFormatters.cpp)
