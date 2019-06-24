@@ -14,10 +14,13 @@ public:
 
     Param(int id, int defaultValue);
 
-    //Works for GUI/Controller, won't feedback to host.
+    // Only affects GUI/Controller, won't feedback to host.
     std::function<void(int)> paramSetter;
 
     std::function<int()> paramGetter;
+
+    // return true if desiring to invalidate the change
+    std::function<bool(int)> onChangeListener;
 
     std::function<std::string(int)> valueFormatter;
 };

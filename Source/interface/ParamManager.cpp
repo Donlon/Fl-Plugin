@@ -47,6 +47,9 @@ void ParamManager::bindControllerComponent(int id, Slider *slider) {
         Param &param = *paramList[pos];
         int newValue = param.paramGetter();
         if (param.value != newValue) {
+            if (param.onChangeListener && param.onChangeListener(newValue)) {
+                return;
+            }
             param.value = newValue;
             notifyHostValueChanged(pos, newValue);
         }
@@ -138,6 +141,10 @@ int ParamManager::getValue(int index) {
 void ParamManager::setValue(int pos, int value, int isActive) {
     Param &param = *paramList[pos];
     if (param.value != value) {
+        if (param.onChangeListener && param.onChangeListener(value)) {
+            return;
+        }
+
         param.value = value;
         if (param.paramSetter) {
             param.paramSetter(value);
