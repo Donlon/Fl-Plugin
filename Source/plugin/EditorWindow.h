@@ -10,8 +10,7 @@ class FruityPluginInterface;
 
 class EditorWindow : public Component,
                      public IPluginGUI {
-    std::unique_ptr<Slider> leftSlider;
-    std::unique_ptr<Slider> rightSlider;
+    std::unique_ptr<Slider> brightnessSlider;
 
 public:
     //==============================================================================

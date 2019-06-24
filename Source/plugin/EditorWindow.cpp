@@ -6,23 +6,19 @@
 
 //==============================================================================
 EditorWindow::EditorWindow() {
-    leftSlider = std::make_unique<SliderEx>(Slider::LinearVertical, Slider::NoTextBox);
-    rightSlider = std::make_unique<SliderEx>(Slider::LinearVertical, Slider::NoTextBox);
-    leftSlider->setRange(.0, 100., 0);
-    rightSlider->setRange(.0, 100., 0);
-    addAndMakeVisible(leftSlider.get());
-    addAndMakeVisible(rightSlider.get());
+    brightnessSlider = std::make_unique<SliderEx>(Slider::LinearVertical, Slider::NoTextBox);
+    brightnessSlider->setRange(.0, 100., 0);
+    addAndMakeVisible(brightnessSlider.get());
 }
 
 EditorWindow::~EditorWindow() {
-    leftSlider = nullptr;
-    rightSlider = nullptr;
+    brightnessSlider = nullptr;
 }
 
 void EditorWindow::showEditor(void *hwnd) {
     setVisible(true);
     setOpaque(true);
-    setSize(500, 350);
+    setSize(800, 600);
     addToDesktop(ComponentPeer::StyleFlags::windowIsResizable, hwnd);
 }
 
@@ -47,16 +43,10 @@ void EditorWindow::paint(Graphics &g) {
 void EditorWindow::resized() {
     static int width = 30;
     juce::Rectangle<int> b = getBounds();
-    juce::Rectangle<int> left = b.removeFromLeft(b.getWidth() / 2);
-    if (left.getWidth() > width) {
-        left.reduce((left.getWidth() - width) / 2, 0);
-        b.reduce((left.getWidth() - width) / 2, 0);
-    }
-    leftSlider->setBounds(left);
-    rightSlider->setBounds(b);
+
+    brightnessSlider->setBounds(b.removeFromLeft(width));
 }
 
 void EditorWindow::linkControllers(ParamManager &paramManager) {
-    paramManager.bindControllerComponent(prmGainLeft, leftSlider.get());
-    paramManager.bindControllerComponent(prmGainRight, rightSlider.get());
+    paramManager.bindControllerComponent(prmBrightness, brightnessSlider.get());
 }

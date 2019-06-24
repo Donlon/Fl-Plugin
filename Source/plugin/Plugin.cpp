@@ -13,11 +13,9 @@ Plugin::~Plugin() {
 
 //==============================================================================
 void Plugin::onCreateParams(ParamManager &manager) {
-    Param &paramLeft = manager.addParam(prmGainLeft, "Gain Left", 50);
-    Param &paramRight = manager.addParam(prmGainRight, "Gain Right", 50);
+    Param &paramBrightness = manager.addParam(prmBrightness, "Brightness", 10);
 
-    paramLeft.valueFormatter = ValueFormatters::precentageFormatter;
-    paramRight.valueFormatter = ValueFormatters::precentageFormatter;
+    paramBrightness.valueFormatter = ValueFormatters::precentageFormatter;
 
     editorWindow->linkControllers(manager);
     paramManager = &manager;

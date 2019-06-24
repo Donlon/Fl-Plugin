@@ -7,10 +7,7 @@
 
 // the parameter indexes
 enum ParamIDs {
-    prmGainLeft = 1000,
-    prmGainRight = 1001,
-
-    NumParams = 1002
+    prmBrightness = 1000
 };
 
 class Plugin : public IPlugin {
