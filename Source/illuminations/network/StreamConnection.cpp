@@ -14,8 +14,10 @@ StreamConnection::StreamConnection(std::string &addr, int port) {
     switch (addressInfo->ai_addr->sa_family) {
         case AF_INET:
             connect(sock, addressInfo->ai_addr, sizeof(struct sockaddr_in));
+            break;
         case AF_INET6:
             connect(sock, addressInfo->ai_addr, sizeof(struct sockaddr_in6));
+            break;
         default:
             throw std::exception("Unexpected SA family");
     }
