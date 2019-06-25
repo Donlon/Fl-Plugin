@@ -3,7 +3,7 @@
 
 #include "Utils.h"
 
-addrinfo *Illuminations::Network::getAddressInfo(const std::string &hostName, bool isDatagram) {
+addrinfo *Illuminations::Network::getAddressInfo(const std::string &hostName, unsigned short port, bool isDatagram) {
     struct addrinfo hints{};
 
     hints.ai_family = AF_UNSPEC;
@@ -12,7 +12,7 @@ addrinfo *Illuminations::Network::getAddressInfo(const std::string &hostName, bo
 
     struct addrinfo *info = nullptr;
 
-    if (getaddrinfo(hostName.data(), nullptr, &hints, &info) == 0) {
+    if (getaddrinfo(hostName.data(), std::to_string(port).data(), &hints, &info) == 0) {
         return info;
     } else {
         return nullptr;

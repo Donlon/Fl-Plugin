@@ -6,7 +6,7 @@
 using namespace Illuminations::Network;
 
 StreamConnection::StreamConnection(std::string &addr, int port) {
-    addressInfo = Illuminations::Network::getAddressInfo(addr, true);
+    addressInfo = Illuminations::Network::getAddressInfo(addr, true, port);
     sock = socket(addressInfo->ai_addr->sa_family, SOCK_DGRAM, 0);
     if (sock == INVALID_SOCKET) {
         throw std::exception("Invalid socket");
