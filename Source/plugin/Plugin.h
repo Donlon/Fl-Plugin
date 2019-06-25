@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../illuminations/network/StreamConnection.h"
 #include "../interface/IPlugin.h"
 #include "../interface/Param.h"
 #include "../interface/ParamManager.h"
@@ -16,6 +17,7 @@ class Plugin : public IPlugin {
     EditorWindow *editorWindow = nullptr;
     ParamManager *paramManager = nullptr;
     LightSynthesizer *synth = nullptr;
+    Illuminations::Network::StreamConnection *conn = nullptr;
 public:
     Plugin();
 

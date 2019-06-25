@@ -2,10 +2,20 @@
 #include "Plugin.h"
 #include "../ui/utils/ValueFormatters.h"
 
+using namespace Illuminations::Network;
+
 Plugin::Plugin() {
     //editorWindow = std::make_unique<EditorWindow>();
     editorWindow = new EditorWindow;
     synth = new LightSynthesizer(60);
+
+    std::string s = ("rpi");
+    conn = new StreamConnection(s, 1055);
+
+    synth->onCanvasUpdate = [this](LightSynthesizer &obj) {
+        std::basic_string<rgb888_t> &buf = obj.getBuffer();
+        this->conn->update(buf);
+    };
 }
 
 Plugin::~Plugin() {

@@ -24,7 +24,12 @@ namespace Illuminations::Network {
         ~StreamConnection();
 
         template<typename T>
-        void update(Buffer<T> buffer, int s) {
+        void update(Buffer<T> buffer) {
+            send(buffer.data(), buffer.length() * sizeof(T), 0, buffer.length())
+        }
+
+        template<typename T>
+        void update(std::basic_string<T> buffer) {
             send(buffer.data(), buffer.length() * sizeof(T), 0, buffer.length())
         }
 
