@@ -32,6 +32,7 @@ add_executable(Fl-Plug-in WIN32
         Source/interface/ParamManager.cpp
         Source/plugin/Plugin.cpp
         Source/plugin/EditorWindow.cpp
+        Source/plugin/LightSynthesizer.cpp
         Source/PluginInterface.cpp
         Source/ui/SliderEx.cpp
         Source/ui/utils/CursorUtils.cpp

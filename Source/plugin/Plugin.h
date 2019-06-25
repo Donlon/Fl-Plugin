@@ -4,6 +4,7 @@
 #include "../interface/Param.h"
 #include "../interface/ParamManager.h"
 #include "EditorWindow.h"
+#include "LightSynthesizer.h"
 
 // the parameter indexes
 enum ParamIDs {
@@ -14,6 +15,7 @@ class Plugin : public IPlugin {
     //std::unique_ptr<EditorWindow> editorWindow;
     EditorWindow *editorWindow = nullptr;
     ParamManager *paramManager = nullptr;
+    LightSynthesizer *synth = nullptr;
 public:
     Plugin();
 
