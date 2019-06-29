@@ -23,11 +23,11 @@ namespace Illuminations::Network {
         int seq = 0;
 
     public:
-        StreamConnection(std::string &addr, int port);
+        StreamConnection(std::string &addr, unsigned short port);
 
         ~StreamConnection();
 
-        void setServerAddress(std::string &addr, int port);
+        void setServerAddress(std::string &addr, unsigned short port);
 
         void connect();
 

@@ -15,6 +15,8 @@ Plugin::Plugin() {
     editorWindow = new EditorWindow;
     synth = new LightSynthesizer(60);
 
+    Illuminations::Network::initNetwork();
+
     std::string s = ("rpi");
     conn = new StreamConnection(s, 1055);
 

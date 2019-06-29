@@ -5,7 +5,7 @@
 
 using namespace Illuminations::Network;
 
-StreamConnection::StreamConnection(std::string &addr, int port) {
+StreamConnection::StreamConnection(std::string &addr, unsigned short port) {
     setServerAddress(addr, port);
 }
 
@@ -13,8 +13,8 @@ StreamConnection::~StreamConnection() {
     Illuminations::Network::freeAddressInfo(addressInfo);
 }
 
-void StreamConnection::setServerAddress(std::string &addr, int port) {
-    addressInfo = Illuminations::Network::getAddressInfo(addr, true, port);
+void StreamConnection::setServerAddress(std::string &addr, unsigned short port) {
+    addressInfo = Illuminations::Network::getAddressInfo(addr, port, true);
     connect();
 }
 
