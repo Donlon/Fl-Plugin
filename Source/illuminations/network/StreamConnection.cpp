@@ -37,6 +37,8 @@ void StreamConnection::connect() {
         default:
             throw std::exception("Unexpected SA family");
     }
+
+    seq++;
 }
 
 void StreamConnection::send(const void *buffer, size_t len, int rangeStart, int rangeEnd) {
@@ -50,9 +52,11 @@ void StreamConnection::send(const void *buffer, size_t len, int rangeStart, int 
     uint8_t type = 0x01;
     sendBuffer.append((const unsigned char *) &type, sizeof(uint8_t));
     sendBuffer.append((const unsigned char *) &rangeStart, sizeof(uint16_t));
-    uint16_t size = rangeStart - rangeEnd;
+    uint16_t size = rangeEnd - rangeStart;
     sendBuffer.append((const unsigned char *) &size, sizeof(uint16_t));
 
     sendBuffer.append((const unsigned char *) buffer, len);
     ::send(sock, (const char *) sendBuffer.data(), sendBuffer.length(), 0);
+
+    seq++;
 }
