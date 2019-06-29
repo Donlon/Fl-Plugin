@@ -1,8 +1,11 @@
-#include <ws2def.h>
+#pragma once
+
 #include <string>
 
-namespace Illuminations::Network {
-    static addrinfo *getAddressInfo(const std::string &hostName, unsigned short port, bool isDatagram);
+struct addrinfo;
 
-    static void freeAddressInfo(addrinfo *info);
+namespace Illuminations::Network {
+    addrinfo *getAddressInfo(const std::string &hostName, unsigned short port, bool isDatagram);
+
+    void freeAddressInfo(addrinfo *info);
 }

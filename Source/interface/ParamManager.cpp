@@ -29,9 +29,6 @@ Param &ParamManager::addParam(int id, const char *name, int defaultValue) {
     return *param;
 }
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "hicpp-signed-bitwise"
-
 void ParamManager::bindControllerComponent(int id, Slider *slider) {
     Param &param = *getParamById(id);
 
@@ -99,9 +96,6 @@ void ParamManager::bindControllerComponent(int id, Slider *slider) {
 
     paramComponentMap.insert(std::pair<Component *, Param *>(slider, &param));
 }
-
-#pragma clang diagnostic pop
-
 
 Param &ParamManager::getParamByPosition(int pos) {
     assert(pos < paramList.size());

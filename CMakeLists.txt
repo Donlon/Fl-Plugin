@@ -10,7 +10,7 @@ include_directories("Source/fpsdk")
 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
 
-add_executable(Fl-Plug-in WIN32
+add_library(Fl-Plug-in
         Source/fpsdk/fp_cplug.cpp
         Source/fpsdk/fp_extra.cpp
         Source/fpsdk/fp_plugclass.cpp

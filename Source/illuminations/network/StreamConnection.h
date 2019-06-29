@@ -1,7 +1,11 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include <WinSock2.h>
+
 #include "Utils.h"
+
+struct addrinfo;
 
 namespace Illuminations::Network {
     struct Session {
@@ -25,12 +29,12 @@ namespace Illuminations::Network {
 
         template<typename T>
         void update(Buffer<T> buffer) {
-            send(buffer.data(), buffer.length() * sizeof(T), 0, buffer.length())
+            send(buffer.data(), buffer.length() * sizeof(T), 0, (int) buffer.length());
         }
 
         template<typename T>
         void update(std::basic_string<T> buffer) {
-            send(buffer.data(), buffer.length() * sizeof(T), 0, buffer.length())
+            send(buffer.data(), buffer.length() * sizeof(T), 0, (int) buffer.length());
         }
 
         void send(const void *buffer, size_t len, int rangeStart, int rangeEnd);

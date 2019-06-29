@@ -1,10 +1,10 @@
 #pragma once
 
-#include "ParamManager.h"
-
 class FruityPluginInterface;
 
 class IPluginGUI;
+
+class ParamManager;
 
 class IPlugin {
 public:

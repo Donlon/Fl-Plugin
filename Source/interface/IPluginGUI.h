@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Windows.h>
-
 class IPluginGUI {
 public:
     virtual void showEditor(void *parent) = 0;

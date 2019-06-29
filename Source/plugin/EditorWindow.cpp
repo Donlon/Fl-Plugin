@@ -1,8 +1,9 @@
 #include <fp_cplug.h>
+
+#include "../interface/ParamManager.h"
+#include "../ui/SliderEx.h"
 #include "EditorWindow.h"
 #include "Plugin.h"
-#include "../PluginInterface.h"
-#include "../ui/SliderEx.h"
 
 //==============================================================================
 EditorWindow::EditorWindow() {

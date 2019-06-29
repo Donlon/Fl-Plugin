@@ -1,5 +1,5 @@
 #include <WinSock2.h>
-#include <ws2ipdef.h>
+#include <Ws2ipdef.h>
 
 #include "StreamConnection.h"
 

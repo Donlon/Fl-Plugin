@@ -1,6 +1,12 @@
 #include <functional>
-#include "Plugin.h"
+
+#include "../illuminations/network/StreamConnection.h"
+#include "../interface/Param.h"
+#include "../interface/ParamManager.h"
 #include "../ui/utils/ValueFormatters.h"
+#include "EditorWindow.h"
+#include "LightSynthesizer.h"
+#include "Plugin.h"
 
 using namespace Illuminations::Network;
 
@@ -30,6 +36,7 @@ void Plugin::onCreateParams(ParamManager &manager) {
     paramBrightness.valueFormatter = ValueFormatters::precentageFormatter;
     paramBrightness.onChangeListener = [this](int val) -> bool {
         this->synth->onParamChange(LightSynthesizer::Brightness, val);
+        this->synth->triggerUpdate();
         return false;
     };
 
@@ -44,4 +51,15 @@ void Plugin::dispatchEvents() {
 IPluginGUI *Plugin::getGUI() {
     //return dynamic_cast<IPluginGUI*>(editorWindow.get());
     return editorWindow;
+}
+
+std::string Plugin::getHint() {
+    Component *target = editorWindow->getComponentAt(Desktop::getMousePosition());
+    if (target) {
+        Param *param = paramManager->getParam(target);
+        if (param) {
+            return param->name;
+        }
+    }
+    return {};
 }

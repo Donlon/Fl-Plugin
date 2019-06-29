@@ -1,16 +1,21 @@
 #pragma once
 
-#include "../illuminations/network/StreamConnection.h"
 #include "../interface/IPlugin.h"
-#include "../interface/Param.h"
-#include "../interface/ParamManager.h"
-#include "EditorWindow.h"
-#include "LightSynthesizer.h"
+
+class ParamManager;
 
 // the parameter indexes
 enum ParamIDs {
     prmBrightness = 1000
 };
+
+class LightSynthesizer;
+
+class EditorWindow;
+
+namespace Illuminations::Network {
+    class StreamConnection;
+}
 
 class Plugin : public IPlugin {
     //std::unique_ptr<EditorWindow> editorWindow;
@@ -30,15 +35,6 @@ public:
 
     IPluginGUI *getGUI() override;
 
-    std::string getHint() override {
-        Component *target = editorWindow->getComponentAt(Desktop::getMousePosition());
-        if (target) {
-            Param *param = paramManager->getParam(target);
-            if (param) {
-                return param->name;
-            }
-        }
-        return {};
-    }
+    std::string getHint() override;
 };
 

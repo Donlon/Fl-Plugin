@@ -1,12 +1,12 @@
-
 #pragma once
 
 #include <JuceHeader.h>
+
 #include "../interface/IPluginGUI.h"
-#include "../interface/ParamManager.h"
-#include "../PluginInterface.h"
 
 class FruityPluginInterface;
+
+class ParamManager;
 
 class EditorWindow : public Component,
                      public IPluginGUI {

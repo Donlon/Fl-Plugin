@@ -4,6 +4,20 @@
               headerPath="../../Source/fpsdk" cppLanguageStandard="17" projectLineFeed="&#10;">
   <MAINGROUP id="UihbV3" name="FL Plug-in">
     <GROUP id="{ADCB5DD8-DDBF-D35E-66EC-550EB75EE91B}" name="Source">
+      <GROUP id="{A1FB7D46-BDFA-28CD-C626-A90BAFC8A406}" name="illuminations">
+        <GROUP id="{AC89959A-C260-A85E-2360-4A22E6E09CAD}" name="network">
+          <FILE id="yKcUxi" name="IlluminationServer.cpp" compile="1" resource="0"
+                file="Source/illuminations/network/IlluminationServer.cpp"/>
+          <FILE id="fA2czT" name="IlluminationServer.h" compile="0" resource="0"
+                file="Source/illuminations/network/IlluminationServer.h"/>
+          <FILE id="JY9IYg" name="StreamConnection.cpp" compile="1" resource="0"
+                file="Source/illuminations/network/StreamConnection.cpp"/>
+          <FILE id="rxc2b9" name="StreamConnection.h" compile="0" resource="0"
+                file="Source/illuminations/network/StreamConnection.h"/>
+          <FILE id="VNKgZ2" name="Utils.cpp" compile="1" resource="0" file="Source/illuminations/network/Utils.cpp"/>
+          <FILE id="UF7YPP" name="Utils.h" compile="0" resource="0" file="Source/illuminations/network/Utils.h"/>
+        </GROUP>
+      </GROUP>
       <GROUP id="{B082C84C-D763-E5B5-FD7C-C2BD8D74FCD2}" name="ui">
         <GROUP id="{750FC705-480E-B8F0-5A61-AD200665D236}" name="utils">
           <FILE id="AO4Bh5" name="CursorUtils.cpp" compile="1" resource="0" file="Source/ui/utils/CursorUtils.cpp"/>
@@ -24,6 +38,10 @@
         <FILE id="Ouhd9L" name="EditorWindow.cpp" compile="1" resource="0"
               file="Source/plugin/EditorWindow.cpp"/>
         <FILE id="m4PKLZ" name="EditorWindow.h" compile="0" resource="0" file="Source/plugin/EditorWindow.h"/>
+        <FILE id="UjhYng" name="LightSynthesizer.cpp" compile="1" resource="0"
+              file="Source/plugin/LightSynthesizer.cpp"/>
+        <FILE id="sl1JvU" name="LightSynthesizer.h" compile="0" resource="0"
+              file="Source/plugin/LightSynthesizer.h"/>
         <FILE id="Aols74" name="Plugin.cpp" compile="1" resource="0" file="Source/plugin/Plugin.cpp"/>
         <FILE id="fqGd4O" name="Plugin.h" compile="0" resource="0" file="Source/plugin/Plugin.h"/>
       </GROUP>

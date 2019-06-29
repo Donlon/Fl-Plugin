@@ -1,4 +1,4 @@
-#include <ws2def.h>
+#include <WinSock2.h>
 #include <WS2tcpip.h>
 
 #include "Utils.h"
