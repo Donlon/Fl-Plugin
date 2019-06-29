@@ -20,6 +20,8 @@
       </GROUP>
       <GROUP id="{B082C84C-D763-E5B5-FD7C-C2BD8D74FCD2}" name="ui">
         <GROUP id="{750FC705-480E-B8F0-5A61-AD200665D236}" name="utils">
+          <FILE id="wRBCPa" name="Console.cpp" compile="1" resource="0" file="Source/ui/utils/Console.cpp"/>
+          <FILE id="Oyi1UN" name="Console.h" compile="0" resource="0" file="Source/ui/utils/Console.h"/>
           <FILE id="AO4Bh5" name="CursorUtils.cpp" compile="1" resource="0" file="Source/ui/utils/CursorUtils.cpp"/>
           <FILE id="J0to41" name="CursorUtils.h" compile="0" resource="0" file="Source/ui/utils/CursorUtils.h"/>
           <FILE id="dV95AQ" name="ValueFormatters.cpp" compile="1" resource="0"

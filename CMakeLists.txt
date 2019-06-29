@@ -8,8 +8,6 @@ include_directories(JuceLibraryCode)
 include_directories("D:\\Program Files (x86)\\JUCE\\modules")
 include_directories("Source/fpsdk")
 
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
-
 add_library(Fl-Plug-in SHARED
         Source/fpsdk/fp_cplug.cpp
         Source/fpsdk/fp_extra.cpp
@@ -36,4 +34,6 @@ add_library(Fl-Plug-in SHARED
         Source/PluginInterface.cpp
         Source/ui/SliderEx.cpp
         Source/ui/utils/CursorUtils.cpp
-        Source/ui/utils/ValueFormatters.cpp)
+        Source/ui/utils/ValueFormatters.cpp
+        Source/ui/utils/Console.cpp
+        Source/interface/Utils.cpp)

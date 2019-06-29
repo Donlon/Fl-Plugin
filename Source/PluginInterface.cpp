@@ -4,6 +4,7 @@
 #include "PluginInterface.h"
 #include "plugin/Plugin.h"
 #include "interface/Param.h"
+#include "interface/Utils.h"
 
 #if defined __WIN64 || 1
 extern "C" __declspec(dllexport)  TFruityPlug *_stdcall CreatePlugInstance(TFruityPlugHost *Host, int Tag)
@@ -47,6 +48,8 @@ void __stdcall FruityPluginInterface::DestroyObject() {
 }
 
 intptr_t __stdcall FruityPluginInterface::Dispatcher(intptr_t ID, intptr_t Index, intptr_t Value) {
+    Utils::traceDispatchLog(ID, Index, Value);
+
     switch (ID) {
         // show the editor
         case FPD_ShowEditor : {
@@ -70,14 +73,10 @@ intptr_t __stdcall FruityPluginInterface::Dispatcher(intptr_t ID, intptr_t Index
 }
 
 void __stdcall FruityPluginInterface::Eff_Render(PWAV32FS SourceBuffer, PWAV32FS DestBuffer, int Length) {
-    Param &param = paramManager.getParamByPosition(0);
-
-    auto gain = static_cast<float>(param.value) / 100.f;
-
-
+    memcpy(DestBuffer, SourceBuffer, Length * sizeof(TWAV32FS));
     for (int i = 0; i < Length; i++) {
-        (*DestBuffer)[i][0] = (*SourceBuffer)[i][0] * gain;
-        (*DestBuffer)[i][1] = (*SourceBuffer)[i][1] * gain;
+        (*DestBuffer)[i][0] = (*SourceBuffer)[i][0];
+        (*DestBuffer)[i][1] = (*SourceBuffer)[i][1];
     }
 }
 
@@ -99,6 +98,7 @@ void FruityPluginInterface::Idle() {
 }
 
 int __stdcall FruityPluginInterface::ProcessParam(int index, int value, int recFlags) {
+    Utils::traceProcessParamLog(index, value, recFlags);
     if (recFlags & REC_GetValue) {
         return paramManager.getValue(index);
     }
