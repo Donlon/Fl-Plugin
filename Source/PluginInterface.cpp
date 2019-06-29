@@ -70,16 +70,14 @@ intptr_t __stdcall FruityPluginInterface::Dispatcher(intptr_t ID, intptr_t Index
 }
 
 void __stdcall FruityPluginInterface::Eff_Render(PWAV32FS SourceBuffer, PWAV32FS DestBuffer, int Length) {
-    Param &paramLeft = paramManager.getParamByPosition(0);
-    Param &paramRight = paramManager.getParamByPosition(1);
+    Param &param = paramManager.getParamByPosition(0);
 
-    auto left = static_cast<float>(paramLeft.value) / 100.f;
-    auto right = static_cast<float>(paramLeft.value) / 100.f;
+    auto gain = static_cast<float>(param.value) / 100.f;
 
 
     for (int i = 0; i < Length; i++) {
-        (*DestBuffer)[i][0] = (*SourceBuffer)[i][0] * left;
-        (*DestBuffer)[i][1] = (*SourceBuffer)[i][1] * right;
+        (*DestBuffer)[i][0] = (*SourceBuffer)[i][0] * gain;
+        (*DestBuffer)[i][1] = (*SourceBuffer)[i][1] * gain;
     }
 }
 

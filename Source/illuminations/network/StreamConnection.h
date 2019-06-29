@@ -27,6 +27,10 @@ namespace Illuminations::Network {
 
         ~StreamConnection();
 
+        void setServerAddress(std::string &addr, int port);
+
+        void connect();
+
         template<typename T>
         void update(Buffer<T> buffer) {
             send(buffer.data(), buffer.length() * sizeof(T), 0, (int) buffer.length());

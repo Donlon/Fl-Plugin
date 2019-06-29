@@ -1,30 +1,42 @@
 #include <WinSock2.h>
-#include <Ws2ipdef.h>
+#include <ws2ipdef.h>
 
 #include "StreamConnection.h"
 
 using namespace Illuminations::Network;
 
 StreamConnection::StreamConnection(std::string &addr, int port) {
+    setServerAddress(addr, port);
+}
+
+StreamConnection::~StreamConnection() {
+    Illuminations::Network::freeAddressInfo(addressInfo);
+}
+
+void StreamConnection::setServerAddress(std::string &addr, int port) {
     addressInfo = Illuminations::Network::getAddressInfo(addr, true, port);
+    connect();
+}
+
+void StreamConnection::connect() {
+    if (!addressInfo) {
+        return; // TODO: feedback to frontend
+    }
+
     sock = socket(addressInfo->ai_addr->sa_family, SOCK_DGRAM, 0);
     if (sock == INVALID_SOCKET) {
         throw std::exception("Invalid socket");
     }
     switch (addressInfo->ai_addr->sa_family) {
         case AF_INET:
-            connect(sock, addressInfo->ai_addr, sizeof(struct sockaddr_in));
+            ::connect(sock, addressInfo->ai_addr, sizeof(struct sockaddr_in));
             break;
         case AF_INET6:
-            connect(sock, addressInfo->ai_addr, sizeof(struct sockaddr_in6));
+            ::connect(sock, addressInfo->ai_addr, sizeof(struct sockaddr_in6));
             break;
         default:
             throw std::exception("Unexpected SA family");
     }
-}
-
-StreamConnection::~StreamConnection() {
-    Illuminations::Network::freeAddressInfo(addressInfo);
 }
 
 void StreamConnection::send(const void *buffer, size_t len, int rangeStart, int rangeEnd) {
