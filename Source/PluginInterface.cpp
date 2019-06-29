@@ -146,8 +146,8 @@ void FruityPluginInterface::ResetParams() {
 
 void __stdcall FruityPluginInterface::SaveRestoreState(IStream *Stream, BOOL Save) {
     if (Save) {
-        paramManager.saveToStream(Stream);
+        paramManager.saveToStream(*Stream);
     } else {
-        paramManager.loadFromStream(Stream);
+        paramManager.loadFromStream(*Stream);
     }
 }

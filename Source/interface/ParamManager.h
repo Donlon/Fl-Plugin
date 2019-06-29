@@ -48,7 +48,7 @@ public:
 
     std::vector<Param *> &getParamList();
 
-    void saveToStream(IStream *stream);
+    void saveToStream(IStream &stream);
 
-    void loadFromStream(IStream *stream);
+    void loadFromStream(IStream &stream);
 };

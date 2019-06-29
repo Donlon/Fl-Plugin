@@ -157,33 +157,33 @@ std::vector<Param *> &ParamManager::getParamList() {
     return paramList;
 }
 
-void ParamManager::saveToStream(IStream *stream) {
+void ParamManager::saveToStream(IStream &stream) {
     ULONG written = 0;
-    stream->Write(&version, sizeof(int), &written);
+    stream.Write(&version, sizeof(int), &written);
     int size = (int) paramList.size();
-    stream->Write(&size, sizeof(int), &written);
+    stream.Write(&size, sizeof(int), &written);
     for (Param *param : paramList) {
-        stream->Write(&param->id, sizeof(int), &written);
-        stream->Write(&param->value, sizeof(int), &written);
+        stream.Write(&param->id, sizeof(int), &written);
+        stream.Write(&param->value, sizeof(int), &written);
     }
 }
 
-void ParamManager::loadFromStream(IStream *stream) {
+void ParamManager::loadFromStream(IStream &stream) {
     ULONG read = 0;
     int lastVersion;
-    stream->Read(&lastVersion, sizeof(int), &read);
+    stream.Read(&lastVersion, sizeof(int), &read);
     if (lastVersion >= version) {
         isPreviousVersionOutOfDate = true;
         return;
     }
     isPreviousVersionOutOfDate = false;
     int size;
-    stream->Read(&size, sizeof(int), &read);
+    stream.Read(&size, sizeof(int), &read);
     for (int i = 0; i < size; i++) {
         int id;
         int value;
-        stream->Read(&id, sizeof(int), &read);
-        stream->Read(&value, sizeof(int), &read);
+        stream.Read(&id, sizeof(int), &read);
+        stream.Read(&value, sizeof(int), &read);
         setValue(id, value, true);
     }
 }
