@@ -34,7 +34,7 @@ public:
 
     void setUpdatingInterval(int interval);
 
-    void onParamChange(Param param, int val);
+    void onParamChange(Param param, float val);
 
     void startAutoUpdate();
 

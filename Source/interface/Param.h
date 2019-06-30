@@ -5,22 +5,22 @@
 
 class Param {
 public:
-    size_t pos;
+    size_t pos = 0;
     int id;
     std::string name;
     std::string desc;
-    int value; // cached value, managed by ParamManager
-    int defaultValue;
+    float value; // cached value, managed by ParamManager
+    float defaultValue;
 
-    Param(int id, int defaultValue);
+    Param(int id, float defaultValue);
 
     // Only affects GUI/Controller, won't feedback to host.
-    std::function<void(int)> paramSetter;
+    std::function<void(float)> paramSetter;
 
-    std::function<int()> paramGetter;
+    std::function<float()> paramGetter;
 
     // return true if desiring to invalidate the change
-    std::function<bool(int)> onChangeListener;
+    std::function<bool(float)> onChangeListener;
 
-    std::function<std::string(int)> valueFormatter;
+    std::function<std::string(float)> valueFormatter;
 };

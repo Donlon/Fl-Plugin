@@ -28,7 +28,7 @@ public:
 
     ~ParamManager();
 
-    Param &addParam(int id, const char *name, int defaultValue);
+    Param &addParam(int id, const char *name, float defaultValue);
 
     void bindControllerComponent(int id, Component *component);
 
@@ -40,11 +40,11 @@ public:
 
     Param *getParam(Component *index);
 
-    int getValue(int index);
+    float getValue(int index);
 
-    void setValue(int index, int value, int isActive = true);
+    void setValue(int index, float value, int isActive = true);
 
-    void notifyHostValueChanged(int index, int value);
+    void notifyHostValueChanged(int index, float value);
 
     std::vector<Param *> &getParamList();
 

@@ -45,10 +45,13 @@ Plugin::~Plugin() {
 
 //==============================================================================
 void Plugin::onCreateParams(ParamManager &manager) {
-    Param &paramBrightness = manager.addParam(prmBrightness, "Brightness", 10);
+    Param &paramBrightness = manager.addParam(prmBrightness, "Brightness", 10.f);
 
-    paramBrightness.valueFormatter = ValueFormatters::precentageFormatter;
-    paramBrightness.onChangeListener = [this](int val) -> bool {
+    paramBrightness.valueFormatter = ValueFormatters::percentageFormatter;
+    paramBrightness.onChangeListener = [this](float val) -> bool {
+#ifdef _DEBUG
+        std::cout << "Update lightstrip, " << val * 100.f << std::endl;
+#endif
         this->synth->onParamChange(LightSynthesizer::Brightness, val);
         this->synth->triggerUpdate();
         return false;

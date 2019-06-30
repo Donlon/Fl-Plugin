@@ -17,9 +17,9 @@ void LightSynthesizer::setUpdatingInterval(int interval) {
     updatingInterval = interval;
 }
 
-void LightSynthesizer::onParamChange(Param param, int val) {
+void LightSynthesizer::onParamChange(Param param, float val) {
     if (param == Brightness) {
-        brightness_v = (uint8_t) ((float) val / 100.f * 255.f);
+        brightness_v = (uint8_t) (val * 256.f);
     }
 }
 

@@ -1,3 +1,3 @@
 #include "Param.h"
 
-Param::Param(int id, int defaultValue) : id(id), defaultValue(defaultValue), value(defaultValue) {}
+Param::Param(int id, float defaultValue) : id(id), defaultValue(defaultValue), value(defaultValue) {}

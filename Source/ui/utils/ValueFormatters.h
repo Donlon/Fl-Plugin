@@ -2,7 +2,7 @@
 #include <functional>
 
 namespace ValueFormatters {
-    std::function<std::string(int)> precentageFormatter = [](int val) -> std::string {
-        return std::to_string(val) + "%";
+    std::function<std::string(float)> percentageFormatter = [](float val) -> std::string {
+        return std::to_string((int) (val * 100)) + "%";
     };
 }

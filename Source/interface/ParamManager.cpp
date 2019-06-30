@@ -16,7 +16,7 @@ ParamManager::~ParamManager() {
     }
 }
 
-Param &ParamManager::addParam(int id, const char *name, int defaultValue) {
+Param &ParamManager::addParam(int id, const char *name, float defaultValue) {
     auto *param = new Param(id, defaultValue);
     param->name.assign(name);
     param->desc.assign(name);
@@ -32,23 +32,23 @@ Param &ParamManager::addParam(int id, const char *name, int defaultValue) {
 void ParamManager::bindControllerComponent(int id, Slider *slider) {
     Param &param = *getParamById(id);
 
-    param.paramGetter = [slider]() -> int {
-        return (int) slider->getValue();
+    param.paramGetter = [slider]() -> float {
+        return (float) (slider->getValue() / 100.);
     };
-    param.paramSetter = [slider](int value) {
-        slider->setValue((double) value);
+    param.paramSetter = [slider](float value) {
+        slider->setValue((double) value * 100.f);
     };
 
     size_t pos = param.pos;
     slider->onValueChange = [this, pos, slider]() {
         Param &param = *paramList[pos];
-        int newValue = param.paramGetter();
+        float newValue = param.paramGetter();
         if (param.value != newValue) {
             if (param.onChangeListener && param.onChangeListener(newValue)) {
                 return;
             }
             param.value = newValue;
-            notifyHostValueChanged(pos, newValue);
+            notifyHostValueChanged((int) pos, newValue);
         }
     };
 
@@ -124,7 +124,7 @@ Param *ParamManager::getParam(Component *index) {
     }
 }
 
-int ParamManager::getValue(int index) {
+float ParamManager::getValue(int index) {
     Param &param = *paramList[index];
     if (param.paramGetter) {
         return param.paramGetter();
@@ -132,7 +132,7 @@ int ParamManager::getValue(int index) {
     return param.value;
 }
 
-void ParamManager::setValue(int pos, int value, int isActive) {
+void ParamManager::setValue(int pos, float value, int isActive) {
     Param &param = *paramList[pos];
     if (param.value != value) {
         if (param.onChangeListener && param.onChangeListener(value)) {
@@ -149,8 +149,8 @@ void ParamManager::setValue(int pos, int value, int isActive) {
     }
 }
 
-void ParamManager::notifyHostValueChanged(int index, int value) {
-    fruityPlug->PlugHost->OnParamChanged(fruityPlug->HostTag, index, value);
+void ParamManager::notifyHostValueChanged(int index, float value) {
+    fruityPlug->PlugHost->OnParamChanged(fruityPlug->HostTag, index, (int) (value * 100.f));
 }
 
 std::vector<Param *> &ParamManager::getParamList() {
@@ -164,7 +164,7 @@ void ParamManager::saveToStream(IStream &stream) {
     stream.Write(&size, sizeof(int), &written);
     for (Param *param : paramList) {
         stream.Write(&param->id, sizeof(int), &written);
-        stream.Write(&param->value, sizeof(int), &written);
+        stream.Write(&param->value, sizeof(float), &written);
     }
 }
 
@@ -181,9 +181,9 @@ void ParamManager::loadFromStream(IStream &stream) {
     stream.Read(&size, sizeof(int), &read);
     for (int i = 0; i < size; i++) {
         int id;
-        int value;
+        float value;
         stream.Read(&id, sizeof(int), &read);
-        stream.Read(&value, sizeof(int), &read);
+        stream.Read(&value, sizeof(float), &read);
         setValue(id, value, true);
     }
 }
