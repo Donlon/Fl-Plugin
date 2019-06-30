@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <thread>
 
 #include "LightSynthesizer.h"
@@ -19,7 +20,7 @@ void LightSynthesizer::setUpdatingInterval(int interval) {
 
 void LightSynthesizer::onParamChange(Param param, float val) {
     if (param == Brightness) {
-        brightness_v = (uint8_t) (val * 256.f);
+        brightness_v = (uint8_t) std::min((unsigned int) (val * 256.f), 255u);
     }
 }
 
