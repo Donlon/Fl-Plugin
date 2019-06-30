@@ -6,12 +6,7 @@
 #include "interface/Param.h"
 #include "interface/Utils.h"
 
-#if defined __WIN64 || 1
-extern "C" __declspec(dllexport)  TFruityPlug *_stdcall CreatePlugInstance(TFruityPlugHost *Host, int Tag)
-#else
-//extern "C" TFruityPlug * _stdcall CreatePlugInstance(TFruityPlugHost *Host, int Tag)
-#endif
-{
+TFruityPlug *_stdcall CreatePlugInstance(TFruityPlugHost *Host, int Tag) {
     juce::initialiseJuce_GUI();
     Process::setCurrentModuleInstanceHandle(HInstance);
 

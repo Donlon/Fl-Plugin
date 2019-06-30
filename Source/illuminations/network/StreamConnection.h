@@ -3,7 +3,7 @@
 #include <JuceHeader.h>
 #include <WinSock2.h>
 
-#include "Utils.h"
+#include "AddressInfo.h"
 
 struct addrinfo;
 

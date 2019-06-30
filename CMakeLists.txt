@@ -24,7 +24,7 @@ add_library(Fl-Plug-in SHARED
         JuceLibraryCode/include_juce_gui_extra.cpp
         Source/illuminations/network/IlluminationServer.cpp
         Source/illuminations/network/StreamConnection.cpp
-        Source/illuminations/network/Utils.cpp
+        Source/illuminations/network/AddressInfo.cpp
         Source/interface/DllEntry.cpp
         Source/interface/Param.cpp
         Source/interface/ParamManager.cpp

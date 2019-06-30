@@ -8,6 +8,8 @@
 #include "interface/IPlugin.h"
 #include "interface/IPluginGUI.h"
 
+extern "C" __declspec(dllexport)  TFruityPlug *_stdcall CreatePlugInstance(TFruityPlugHost *Host, int Tag);
+
 class FruityPluginInterface : public TCPPFruityPlug {
     IPlugin *plugin = nullptr;
 
