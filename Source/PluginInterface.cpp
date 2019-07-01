@@ -7,9 +7,6 @@
 #include "interface/Utils.h"
 
 TFruityPlug *_stdcall CreatePlugInstance(TFruityPlugHost *Host, int Tag) {
-    juce::initialiseJuce_GUI();
-    Process::setCurrentModuleInstanceHandle(HInstance);
-
     return new FruityPluginInterface(Tag, Host);
 };
 
@@ -25,6 +22,9 @@ TFruityPlugInfo PlugInfo = {
 
 FruityPluginInterface::FruityPluginInterface(int Tag, TFruityPlugHost *Host)
         : TCPPFruityPlug(Tag, Host, nullptr), paramManager(dynamic_cast<TCPPFruityPlug *>(this)) {
+    juce::initialiseJuce_GUI();
+    Process::setCurrentModuleInstanceHandle(HInstance);
+
     createPlugin();
     //ResetParams();
     Info = &PlugInfo;
@@ -39,6 +39,7 @@ void FruityPluginInterface::createPlugin() {
 }
 
 void __stdcall FruityPluginInterface::DestroyObject() {
+    juce::shutdownJuce_GUI();
     delete plugin;
 }
 
