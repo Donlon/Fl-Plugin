@@ -78,17 +78,17 @@ void __stdcall FruityPluginInterface::Eff_Render(PWAV32FS SourceBuffer, PWAV32FS
 void __stdcall FruityPluginInterface::GetName(int Section, int Index, int Value, char *Name) {
     if (Section == FPN_Param) {
         Param &param = paramManager.getParamByPosition(Index);
-        strncpy(Name, param.name.c_str(), 256);
+        strcpy_s(Name, 256, param.name.c_str());
     } else if (Section == FPN_ParamValue) {
         Param &param = paramManager.getParamByPosition(Index);
         std::string &str = param.desc;
-        strncpy(Name, str.c_str(), 256);
+        strcpy_s(Name, 256, str.c_str());
     }
 }
 
 void FruityPluginInterface::Idle() {
     std::string hint = plugin->getHint();
-    strncpy(AppHint, hint.c_str(), 256);
+    strcpy_s(AppHint, 256, hint.c_str());
     PlugHost->OnHint(HostTag, AppHint);
 }
 
