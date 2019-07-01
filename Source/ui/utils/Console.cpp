@@ -5,26 +5,32 @@
 #include "Console.h"
 
 namespace Console {
-    bool allocated = false;
+    int allocationCount = 0;
 }
 
 void Console::allocateConsole() {
-    if (allocated) {
-        throw std::exception("Console has been allocated");
+    allocationCount++;
+
+    if (allocationCount > 1) {
+        return;
     }
+
     FILE *_;
     AllocConsole();
     freopen_s(&_, "CONOUT$", "w", stdout);
 
     ::SetWindowPos(::GetConsoleWindow(), HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
-
-    allocated = true;
 }
 
 void Console::freeConsole() {
-    if (!allocated) {
-        throw std::exception("Console hasn't been allocated");
+    if (allocationCount <= 0) {
+        throw std::exception("Too many calls for freeConsole");
     }
-    FreeConsole();
-    allocated = false;
+
+    allocationCount--;
+
+    if (allocationCount > 0) {
+        return;
+    }
+    ::FreeConsole();
 }
