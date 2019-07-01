@@ -95,8 +95,10 @@ void FruityPluginInterface::Idle() {
 
 int __stdcall FruityPluginInterface::ProcessParam(int index, int value, int recFlags) {
     Utils::traceProcessParamLog(index, value, recFlags);
+
+    Param &param = paramManager.getParamByPosition(index);
     if (recFlags & REC_GetValue) {
-        return (int) (100.f * paramManager.getValue(index));
+        return (int) (100.f * param.value);
     }
 
     float val;
@@ -108,7 +110,7 @@ int __stdcall FruityPluginInterface::ProcessParam(int index, int value, int recF
     }
 
     if (recFlags & REC_UpdateValue) {
-        paramManager.setValue(index, val, false);
+        paramManager.setValue(param, val, false);
 
         // if the parameter value has changed,
         // then we notify the host that the controller has changed
@@ -122,14 +124,19 @@ int __stdcall FruityPluginInterface::ProcessParam(int index, int value, int recF
 
     // update the parameter control's value
     if (recFlags & REC_UpdateControl) {
-        paramManager.setValue(index, val, false);
+        paramManager.setValue(param, val, false);
     }
 
     // we show the parameter value as a hint
     if (recFlags & REC_ShowHint) {
-        char t[32];
-        sprintf(t, "%d%%", (int) (val * value));
-        PlugHost->OnHint(HostTag, t);
+        char *hint = nullptr;
+        if (param.valueFormatter) {
+            hint = param.valueFormatter(val).data();
+        } else {
+            std::string hint_str = std::to_string((int) (val * 100.)) + '%';
+            hint = hint_str.data();
+        }
+        PlugHost->OnHint(HostTag, hint);
     }
 
     // make sure we return the value

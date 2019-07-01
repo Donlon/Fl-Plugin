@@ -132,8 +132,7 @@ float ParamManager::getValue(int index) {
     return param.value;
 }
 
-void ParamManager::setValue(int pos, float value, int isActive) {
-    Param &param = *paramList[pos];
+void ParamManager::setValue(Param &param, float value, int isActive) {
     if (param.value != value) {
         if (param.onChangeListener && param.onChangeListener(value)) {
             return;
@@ -144,9 +143,15 @@ void ParamManager::setValue(int pos, float value, int isActive) {
             param.paramSetter(value);
         }
         if (isActive) {
-            notifyHostValueChanged(pos, value);
+            notifyHostValueChanged(param.pos, value);
         }
     }
+
+}
+
+void ParamManager::setValue(int pos, float value, int isActive) {
+    Param &param = getParamByPosition(pos);
+    setValue(param, value, isActive);
 }
 
 void ParamManager::notifyHostValueChanged(int index, float value) {

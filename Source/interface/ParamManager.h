@@ -42,6 +42,8 @@ public:
 
     float getValue(int index);
 
+    void setValue(Param &param, float value, int isActive = true);
+
     void setValue(int index, float value, int isActive = true);
 
     void notifyHostValueChanged(int index, float value);
