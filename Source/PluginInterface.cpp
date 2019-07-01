@@ -2,13 +2,25 @@
 #include <cassert>
 
 #include "PluginInterface.h"
+#include "PluginInterfaceSEHWrapper.h"
 #include "plugin/Plugin.h"
 #include "interface/Param.h"
 #include "interface/Utils.h"
+#include "ui/utils/Console.h"
+
+#define CONSOLE_DEBUGGING
 
 TFruityPlug *_stdcall CreatePlugInstance(TFruityPlugHost *Host, int Tag) {
+#ifdef CONSOLE_DEBUGGING
+    Console::allocateConsole();
+#endif
+
+#ifdef _DEBUG
+    return new PluginInterfaceSEHWrapper(Tag, Host);
+#else
     return new FruityPluginInterface(Tag, Host);
-};
+#endif
+}
 
 // the information structure describing this plugin to the host
 TFruityPlugInfo PlugInfo = {
@@ -39,8 +51,12 @@ void FruityPluginInterface::createPlugin() {
 }
 
 void __stdcall FruityPluginInterface::DestroyObject() {
+    std::cout << "Plugin destroyed." << std::endl;
     juce::shutdownJuce_GUI();
     delete plugin;
+#ifdef CONSOLE_DEBUGGING
+    Console::freeConsole();
+#endif
 }
 
 intptr_t __stdcall FruityPluginInterface::Dispatcher(intptr_t ID, intptr_t Index, intptr_t Value) {
@@ -70,10 +86,6 @@ intptr_t __stdcall FruityPluginInterface::Dispatcher(intptr_t ID, intptr_t Index
 
 void __stdcall FruityPluginInterface::Eff_Render(PWAV32FS SourceBuffer, PWAV32FS DestBuffer, int Length) {
     memcpy(DestBuffer, SourceBuffer, Length * sizeof(TWAV32FS));
-    for (int i = 0; i < Length; i++) {
-        (*DestBuffer)[i][0] = (*SourceBuffer)[i][0];
-        (*DestBuffer)[i][1] = (*SourceBuffer)[i][1];
-    }
 }
 
 void __stdcall FruityPluginInterface::GetName(int Section, int Index, int Value, char *Name) {

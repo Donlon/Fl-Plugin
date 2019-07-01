@@ -36,4 +36,5 @@ add_library(Fl-Plug-in SHARED
         Source/ui/utils/CursorUtils.cpp
         Source/ui/utils/ValueFormatters.cpp
         Source/ui/utils/Console.cpp
-        Source/interface/Utils.cpp)
+        Source/interface/Utils.cpp
+        Source/PluginInterfaceSEHWrapper.cpp)

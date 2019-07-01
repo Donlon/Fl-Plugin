@@ -4,6 +4,10 @@
               headerPath="../../Source/fpsdk" cppLanguageStandard="17" projectLineFeed="&#10;">
   <MAINGROUP id="UihbV3" name="FL Plug-in">
     <GROUP id="{ADCB5DD8-DDBF-D35E-66EC-550EB75EE91B}" name="Source">
+      <FILE id="YgXggI" name="PluginInterfaceSEHWrapper.cpp" compile="1"
+            resource="0" file="Source/PluginInterfaceSEHWrapper.cpp"/>
+      <FILE id="uoBzGO" name="PluginInterfaceSEHWrapper.h" compile="0" resource="0"
+            file="Source/PluginInterfaceSEHWrapper.h"/>
       <GROUP id="{A1FB7D46-BDFA-28CD-C626-A90BAFC8A406}" name="illuminations">
         <GROUP id="{AC89959A-C260-A85E-2360-4A22E6E09CAD}" name="network">
           <FILE id="AQrHdQ" name="AddressInfo.cpp" compile="1" resource="0" file="Source/illuminations/network/AddressInfo.cpp"/>

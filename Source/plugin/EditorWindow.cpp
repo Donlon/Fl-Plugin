@@ -42,7 +42,7 @@ void EditorWindow::paint(Graphics &g) {
 }
 
 void EditorWindow::resized() {
-    static int width = 60;
+    static int width = 80;
     juce::Rectangle<int> b = getBounds();
     b.setX((b.getWidth() - width) / 2);
     b.setWidth(width);

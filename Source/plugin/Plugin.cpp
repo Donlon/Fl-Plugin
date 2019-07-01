@@ -3,7 +3,6 @@
 #include "../illuminations/network/StreamConnection.h"
 #include "../interface/Param.h"
 #include "../interface/ParamManager.h"
-#include "../ui/utils/Console.h"
 #include "../ui/utils/ValueFormatters.h"
 #include "EditorWindow.h"
 #include "LightSynthesizer.h"
@@ -11,12 +10,7 @@
 
 using namespace Illuminations::Network;
 
-#define CONSOLE_DEBUGGING
-
 Plugin::Plugin() {
-#ifdef CONSOLE_DEBUGGING
-    Console::allocateConsole();
-#endif
     //editorWindow = std::make_unique<EditorWindow>();
     editorWindow = new EditorWindow;
     synth = new LightSynthesizer(60);
@@ -37,10 +31,6 @@ Plugin::Plugin() {
 Plugin::~Plugin() {
     delete editorWindow;
     delete synth;
-
-#ifdef CONSOLE_DEBUGGING
-    Console::freeConsole();
-#endif
 }
 
 //==============================================================================
