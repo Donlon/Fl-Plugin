@@ -42,9 +42,10 @@ void EditorWindow::paint(Graphics &g) {
 }
 
 void EditorWindow::resized() {
-    static int width = 30;
+    static int width = 60;
     juce::Rectangle<int> b = getBounds();
-
+    b.setX((b.getWidth() - width) / 2);
+    b.setWidth(width);
     brightnessSlider->setBounds(b.removeFromLeft(width));
 }
 
